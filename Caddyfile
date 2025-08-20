@@ -7,7 +7,7 @@
 asms.railway.app {
     # This `handle` block serves your Angular frontend for the root path
     handle / {
-        reverse_proxy asms-frontend.railway.internal
+        reverse_proxy asms-frontend-internal.railway.internal
     }
     
     # This `handle` block routes all requests starting with /api to your backend
