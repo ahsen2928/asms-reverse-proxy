@@ -4,10 +4,10 @@
 }
 
 # Your public-facing domain
-asms.up.railway.app:4200 {
+asms.up.railway.app {
     # This `handle` block serves your Angular frontend for the root path
     handle / {
-        reverse_proxy asms-frontend-internal.railway.internal:4200
+        reverse_proxy asms-frontend-internal.railway.internal:8080
     }
     
     # This `handle` block routes all requests starting with /api to your backend
