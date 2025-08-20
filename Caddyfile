@@ -7,16 +7,16 @@
 asms.up.railway.app {
     # This `handle` block serves your Angular frontend for the root path
     handle / {
-        reverse_proxy asms-frontend-internal.railway.internal
+        reverse_proxy asms-frontend-internal.railway.internal:8080
     }
     
     # This `handle` block routes all requests starting with /api to your backend
     handle /api/* {
-        reverse_proxy asms-api-internal.railway.internal
+        reverse_proxy asms-api-internal.railway.internal:8080
     }
 
     # This `handle` block routes all requests starting with /auth to your backend
     handle /auth/* {
-        reverse_proxy asms-api-internal.railway.internal
+        reverse_proxy asms-api-internal.railway.internal:8080
     }
 }
