@@ -4,7 +4,7 @@
 }
 
 # Your public-facing domain
-asms.railway.app {
+asms.up.railway.app {
     # This `handle` block serves your Angular frontend for the root path
     handle / {
         reverse_proxy asms-frontend-internal.railway.internal
