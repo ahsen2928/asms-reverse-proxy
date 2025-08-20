@@ -1,7 +1,10 @@
+# Global options block at the top of the file
+{
+    auto_https off
+}
+
 # Your public-facing domain
 asms.railway.app {
-    auto_https off
-    
     # This `handle` block serves your Angular frontend for the root path
     handle / {
         reverse_proxy asms-frontend.railway.internal
