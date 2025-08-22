@@ -5,18 +5,27 @@
 
 # Your public-facing domain
 asms.up.railway.app {
-    # This `handle` block serves your Angular frontend for the root path
-    handle / {
+
+    # This route is a catch-all for anything that doesn't match the API route
+    handle {
         reverse_proxy asms-frontend-internal.railway.internal:8080
     }
-    
-    # This `handle` block routes all requests starting with /api to your backend
-    handle /api/* {
-        reverse_proxy asms-api-internal.railway.internal:8080
+
+    # This route is specifically for your API endpoints.
+    # It checks if the path starts with /auth/* AND if it's an API request.
+    route /auth/* {
+        # Check if the X-Requested-With header is present.
+        @authApi header X-Requested-With XMLHttpRequest
+        
+        # If the header is present, proxy the request to the backend.
+        reverse_proxy @authApi asms-api-internal.railway.internal:8080
     }
 
-    # This `handle` block routes all requests starting with /auth to your backend
-    handle /auth/* {
-        reverse_proxy asms-api-internal.railway.internal:8080
+    route /api/* {
+        # Check if the X-Requested-With header is present.
+        @authApi header X-Requested-With XMLHttpRequest
+        
+        # If the header is present, proxy the request to the backend.
+        reverse_proxy @authApi asms-api-internal.railway.internal:8080
     }
 }
